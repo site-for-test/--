@@ -3417,7 +3417,10 @@
 
         SupabaseRemoteStore.prototype.loadMasterSeed = function () {
             if (this.seedPromise) return this.seedPromise;
-            this.seedPromise = fetch('./master-data-seed.json', { cache: 'no-store' })
+            var seedUrl = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                ? './master-data-seed.json'
+                : 'https://raw.githubusercontent.com/site-for-test/--/main/disney-shiori/master-data-seed.json';
+            this.seedPromise = fetch(seedUrl, { cache: 'no-store' })
                 .then(function (res) {
                     if (!res.ok) throw new Error('seed fetch failed');
                     return res.json();
