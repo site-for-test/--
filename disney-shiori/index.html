@@ -3417,7 +3417,7 @@
 
         SupabaseRemoteStore.prototype.loadMasterSeed = function () {
             if (this.seedPromise) return this.seedPromise;
-            this.seedPromise = fetch('./master-data-seed.json', { cache: 'no-store' })
+            this.seedPromise = fetch('./master-data-seed-20260708.json', { cache: 'no-store' })
                 .then(function (res) {
                     if (!res.ok) throw new Error('seed fetch failed');
                     return res.json();
